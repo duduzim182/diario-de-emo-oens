@@ -31,5 +31,19 @@ function salvarEntrada(){
     humor:analise.humor,
     emoji:analise.emoji
   };
-  
+  const entradas = JSON.parse(localStorage.getItem("diarioEmocoes"))||[]
+    entradas.unshift(novaEntrada);
+    localStorage.setItem("diarioEmocoens",JSON.stringify(entradas));
+    document.querySelector("form").reset();
+  document.getElementById("data").value=new Date().toISOString().slice(0,16)
+  mostrarEntradas();
+}
+function mostrarEntradas(){
+  const lista = document.getElementById("listaEntradas");
+  lista.innerHTML = "";
+  const mostrarEntradas = JSON.parse(localStorage.getItem("diarioEmocoes"))||[]
+  if(entradas.length ===0){
+    lista.innerHTML = "<p>seu diario ainda esta vazio </p>";
+    return
+  }
 }
