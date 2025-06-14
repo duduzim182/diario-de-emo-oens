@@ -46,4 +46,28 @@ function mostrarEntradas(){
     lista.innerHTML = "<p>seu diario ainda esta vazio </p>";
     return
   }
+  entradas.forEach(entrada=>{
+const div = document.createElement("div");
+div.classList.add("entrada");
+div.innerHTML = `
+<h3>${entrada.titulo}</h3>
+<p><strong>usuario:</strong>${new Date(entrada.data).toLocaleString("pt-BR")}</p>
+<p>${entrada.texto}</p>
+<p class="humor"><strong>humor:</strong>${entrada.humor}<span class="emoji">${entrada.emoji}</span></p>
+`;
+lista.appendChild(div);
+  })
+}
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("data").value = new Date().toISOString().slice(0,16);
+  mostrarEntradas();
+})
+function mostrarFrase() {
+const entradas = JSON.parse(localStorage.getItem("diarioEmocoes"))||[];
+if (entradas.length===0){
+  alert("voce ainda nao fez nenhuma entrada no diario.");
+  return;
+}
+const ultimaEntrada = entradas[0]
+const humor = ultimaEntrada.humor;
 }
